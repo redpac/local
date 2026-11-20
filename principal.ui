@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Principal</class>
+ <widget class="QMainWindow" name="Principal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>980</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Mensajes</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow { background: #949dff; }
+QWidget#sidebar { background: #ffffff; border-right: 1px solid #dfe5e7; }
+QWidget#header { background: #ffffff; border-bottom: 1px solid #dfe5e7; }
+QLabel#title { color: #111b21; font-size: 18px; font-weight: 700; }
+QLabel#sectionTitle { color: #54656f; font-size: 12px; font-weight: 700; }
+QLineEdit { background: #f0f2f5; border: 0; border-radius: 8px; padding: 9px 12px; color: #111b21; }
+QListWidget { border: 0; background: transparent; outline: 0; }
+QListWidget::item { padding: 11px; border-bottom: 1px solid #f0f2f5; }
+QListWidget::item:selected { background: #ebf5f2; color: #111b21; }
+QLabel#avatar { background: #d9fdd3; color: #075e54; border-radius: 24px; font-size: 21px; font-weight: 700; }
+QLabel#perfilAvatar { background: #00a884; color: white; border-radius: 19px; font-size: 16px; font-weight: 700; }
+QLabel#emptyTitle { color: #41525d; font-size: 22px; font-weight: 600; }
+QLabel#emptyText { color: #667781; font-size: 14px; }
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="rootLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="sidebarLayout">
+      <property name="spacing">
+       <number>12</number>
+      </property>
+      <property name="leftMargin">
+       <number>16</number>
+      </property>
+      <property name="topMargin">
+       <number>18</number>
+      </property>
+      <property name="rightMargin">
+       <number>16</number>
+      </property>
+      <property name="bottomMargin">
+       <number>16</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="profileLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="perfilAvatar">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>45</width>
+            <height>45</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>P1</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="profileText">
+          <property name="spacing">
+           <number>1</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="perfilnombre">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-weight: 700; color: #111b21;</string>
+            </property>
+            <property name="text">
+             <string>p1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="profileStatus">
+            <property name="font">
+             <font>
+              <pointsize>-1</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #667781; font-size: 11px;</string>
+            </property>
+            <property name="text">
+             <string>activo</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="profileSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QToolButton" name="configuracionPerfil">
+          <property name="styleSheet">
+           <string notr="true">border: 0; color: #54656f; font-size: 20px;</string>
+          </property>
+          <property name="text">
+           <string>⋮</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="createButtonsLayout">
+        <item>
+         <widget class="QPushButton" name="create_chat">
+          <property name="text">
+           <string>Nuevo chat</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="create_group">
+          <property name="text">
+           <string>Nuevo grupo</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="create_channel">
+          <property name="text">
+           <string>Nuevo canal</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="join_channel">
+          <property name="text">
+           <string>Unir a canal</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QLabel" name="selecchatsreciente">
+        <property name="styleSheet">
+         <string notr="true">QLabel#sectionTitle { }</string>
+        </property>
+        <property name="text">
+         <string>CHATS RECIENTES</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="chatsReciente">
+        <item>
+         <property name="text">
+          <string>Chat global</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>p1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>p2</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>GRUPOS</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="listWidget">
+        <item>
+         <property name="text">
+          <string>g1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>g2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>g3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>g4</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="seleccanales">
+        <property name="styleSheet">
+         <string notr="true">QLabel#sectionTitle { }</string>
+        </property>
+        <property name="text">
+         <string>CANALES</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="canales">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>120</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>c1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>c2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>c3</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="headerLayout">
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>24</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="avatar">
+          <property name="minimumSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>P2</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="chatHeaderText">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>50</number>
+          </property>
+          <property name="topMargin">
+           <number>5</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>5</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="title">
+            <property name="layoutDirection">
+             <enum>Qt::LayoutDirection::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>p2</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QToolButton" name="searchButton">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;Actualizar&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 0; font-size: 22px; color: #54656f;</string>
+          </property>
+          <property name="text">
+           <string>↻</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QPlainTextEdit" name="txtMsgs">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="sendLayout">
+        <property name="leftMargin">
+         <number>16</number>
+        </property>
+        <property name="topMargin">
+         <number>12</number>
+        </property>
+        <property name="rightMargin">
+         <number>16</number>
+        </property>
+        <property name="bottomMargin">
+         <number>12</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="txtSend">
+          <property name="maxLength">
+           <number>1023</number>
+          </property>
+          <property name="placeholderText">
+           <string>Escribe un mensaje</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnSend">
+          <property name="text">
+           <string>Enviar</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>980</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuArchivo">
+    <property name="title">
+     <string>&amp;Archivo</string>
+    </property>
+    <addaction name="actionConectar"/>
+    <addaction name="separator"/>
+    <addaction name="actionSalir"/>
+   </widget>
+   <addaction name="menuArchivo"/>
+  </widget>
+  <action name="actionConectar">
+   <property name="text">
+    <string>Co&amp;nectar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionSalir">
+   <property name="text">
+    <string>&amp;Salir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
