@@ -1,11 +1,10 @@
 1. REQUISITOS
-==============================================================================
+==================================================================
 * Una computadora con Windows, macOS o Linux.
 * Python 3.10 o posterior.
-* Los archivos requirements.txt, messenger.py, chat_basico.ui, chat_basico_ui.py, conectar.ui, conectar_ui.py, crear.ui y crear_ui.py
 
 2. INSTALAR PYTHON
-==============================================================================
+===================================================================
 WINDOWS
 -------------------------------------------------------------------------------
 1. Descarga Python desde https://www.python.org/downloads/windows/
