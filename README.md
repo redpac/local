@@ -1,12 +1,9 @@
 1. REQUISITOS
-==================================================================
 * Una computadora con Windows, macOS o Linux.
 * Python 3.10 o posterior.
 
 2. INSTALAR PYTHON
-===================================================================
 WINDOWS
--------------------------------------------------------------------------------
 1. Descarga Python desde https://www.python.org/downloads/windows/
 2. Ejecuta el instalador.
 3. Marca obligatoriamente "Add python.exe to PATH".
@@ -16,7 +13,6 @@ Comprueba la instalación desde CMD o PowerShell:
     pip --version
 
 macOS
--------------------------------------------------------------------------------
 La forma más sencilla es instalar Python desde:
 https://www.python.org/downloads/macos/
 Otra opción es usar Homebrew:
@@ -26,7 +22,6 @@ Comprueba la instalación desde Terminal:
     pip3 --version
 
 GNU/LINUX
--------------------------------------------------------------------------------
 En Ubuntu o Debian:
     sudo apt update
     sudo apt install python3 python3-pip python3-venv
@@ -37,7 +32,6 @@ Comprueba:
     pip3 --version
 
 3. PREPARAR EL PROYECTO
-==============================================================================
 Abre una terminal dentro de la carpeta que contiene messenger.py.
 Windows - PowerShell o CMD:
     cd ruta\al\proyecto
@@ -57,11 +51,9 @@ Debes encontrar al menos:
 * src/ -- images
 
 4. CREAR Y ACTIVAR UN ENTORNO VIRTUAL (o no, cada quien vdd)
-==============================================================================
 Un entorno virtual evita conflictos entre dependencias de distintos proyectos.
 
 WINDOWS
--------------------------------------------------------------------------------
 Crear:
     python -m venv .venv
 Activar con PowerShell:
@@ -70,7 +62,6 @@ Si PowerShell bloquea scripts, usa CMD:
     .venv\Scripts\activate.bat
 
 macOS / LINUX
--------------------------------------------------------------------------------
 Crear:
     python3 -m venv .venv
 Activar:
@@ -81,27 +72,21 @@ Para salir:
     deactivate
 
 5. INSTALAR DEPENDENCIAS
-==============================================================================
 Con el entorno virtual activo (o no, cada quien vdd):
 
 WINDOWS
--------------------------------------------------------------------------------
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt
 
 macOS / LINUX
--------------------------------------------------------------------------------
     python3 -m pip install --upgrade pip
     python3 -m pip install -r requirements.txt
 
 6. EJECUTAR EL CLIENTE
-==============================================================================
 WINDOWS
--------------------------------------------------------------------------------
     python messenger.py
 
 macOS / LINUX
--------------------------------------------------------------------------------
     python3 messenger.py
 Si aparece un error de bibliotecas gráficas en Linux, instala los componentes
 Qt correspondientes con el administrador de paquetes de tu distribución.
@@ -111,8 +96,7 @@ En macOS, si Python procede de python.org y PySide6 no inicia, verifica que
 el entorno virtual esté activo y que pip haya instalado PySide6 dentro de
 ese entorno.
 
-==============================================================================
-
+7. ARQUITECTURA
 El proyecto sigue la arquitectura cliente-servidor:
 
     [messenger.py]  <---- TCP texto plano ---->  [server.py]
