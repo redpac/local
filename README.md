@@ -127,11 +127,24 @@ ese entorno.
 7. ARQUITECTURA
 El proyecto sigue la arquitectura cliente-servidor:
 
-    [messenger.py]  <---- TCP texto plano ---->  [server.py]
-          |                                          |
-          |                                      [database.py]
-          |                                          |
-          +------ PySide6: interfaz gráfica          +---- SQL Server
+```mermaid
+flowchart LR
+    subgraph Client["Cliente"]
+        Messenger["messenger.py<br/>Hilo de conexión"]
+        UI["PySide6<br/>Interfaz gráfica"]
+        Messenger --- UI
+    end
+
+    subgraph Server["Servidor"]
+        TCP["server.py<br/>Servidor TCP"]
+        Database["database.py<br/>Acceso a datos"]
+        TCP --> Database
+    end
+
+    SQL[("SQL Server")]
+    Database --> SQL
+    Messenger <-->|"TCP / protocolo textual"| TCP
+```
 
 1. messenger.py
    Contiene la interfaz gráfica y el hilo de conexión. Convierte respuestas
