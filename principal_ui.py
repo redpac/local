@@ -16,35 +16,22 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLayout,
+from PySide6.QtWidgets import (QApplication, QFrame, QGroupBox, QLabel,
     QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QMenu, QMenuBar, QPlainTextEdit, QPushButton,
-    QSizePolicy, QSpacerItem, QToolButton, QVBoxLayout,
+    QPushButton, QSizePolicy, QTextEdit, QToolButton,
     QWidget)
 
 class Ui_Principal(object):
     def setupUi(self, Principal):
         if not Principal.objectName():
             Principal.setObjectName(u"Principal")
-        Principal.resize(980, 650)
+        Principal.resize(963, 650)
         Principal.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         Principal.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.AddressBookNew))
         Principal.setWindowIcon(icon)
-        Principal.setStyleSheet(u"QMainWindow { background: #949dff; }\n"
-"QWidget#sidebar { background: #ffffff; border-right: 1px solid #dfe5e7; }\n"
-"QWidget#header { background: #ffffff; border-bottom: 1px solid #dfe5e7; }\n"
-"QLabel#title { color: #111b21; font-size: 18px; font-weight: 700; }\n"
-"QLabel#sectionTitle { color: #54656f; font-size: 12px; font-weight: 700; }\n"
-"QLineEdit { background: #f0f2f5; border: 0; border-radius: 8px; padding: 9px 12px; color: #111b21; }\n"
-"QListWidget { border: 0; background: transparent; outline: 0; }\n"
-"QListWidget::item { padding: 11px; border-bottom: 1px solid #f0f2f5; }\n"
-"QListWidget::item:selected { background: #ebf5f2; color: #111b21; }\n"
-"QLabel#avatar { background: #d9fdd3; color: #075e54; border-radius: 24px; font-size: 21px; font-weight: 700; }\n"
-"QLabel#perfilAvatar { background: #00a884; color: white; border-radius: 19px; font-size: 16px; font-weight: 700; }\n"
-"QLabel#emptyTitle { color: #41525d; font-size: 22px; font-weight: 600; }\n"
-"QLabel#emptyText { color: #667781; font-size: "
-                        "14px; }\n"
+        Principal.setStyleSheet(u"background-color: rgb(47, 51, 127);\n"
+"\n"
 "")
         self.actionConectar = QAction(Principal)
         self.actionConectar.setObjectName(u"actionConectar")
@@ -52,216 +39,195 @@ class Ui_Principal(object):
         self.actionSalir.setObjectName(u"actionSalir")
         self.centralwidget = QWidget(Principal)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.rootLayout = QHBoxLayout(self.centralwidget)
-        self.rootLayout.setSpacing(0)
-        self.rootLayout.setObjectName(u"rootLayout")
-        self.rootLayout.setContentsMargins(0, 0, 0, 0)
-        self.sidebarLayout = QVBoxLayout()
-        self.sidebarLayout.setSpacing(12)
-        self.sidebarLayout.setObjectName(u"sidebarLayout")
-        self.sidebarLayout.setContentsMargins(16, 18, 16, 16)
-        self.profileLayout = QHBoxLayout()
-        self.profileLayout.setObjectName(u"profileLayout")
-        self.profileLayout.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
-        self.profileLayout.setContentsMargins(-1, 10, -1, 10)
-        self.perfilAvatar = QLabel(self.centralwidget)
-        self.perfilAvatar.setObjectName(u"perfilAvatar")
-        self.perfilAvatar.setMinimumSize(QSize(45, 45))
-        self.perfilAvatar.setMaximumSize(QSize(45, 45))
-        self.perfilAvatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.profileLayout.addWidget(self.perfilAvatar)
-
-        self.profileText = QVBoxLayout()
-        self.profileText.setSpacing(1)
-        self.profileText.setObjectName(u"profileText")
-        self.perfilnombre = QLabel(self.centralwidget)
+        self.groupBox = QGroupBox(self.centralwidget)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(-20, -10, 471, 161))
+        self.groupBox.setStyleSheet(u"background-color: rgb(255, 255, 255);border-radius: 15px;")
+        self.groupBox.setFlat(False)
+        self.perfilnombre = QLabel(self.groupBox)
         self.perfilnombre.setObjectName(u"perfilnombre")
+        self.perfilnombre.setGeometry(QRect(160, 20, 211, 61))
         font = QFont()
-        font.setPointSize(12)
+        font.setPointSize(30)
         font.setBold(True)
         self.perfilnombre.setFont(font)
-        self.perfilnombre.setStyleSheet(u"font-weight: 700; color: #111b21;")
-
-        self.profileText.addWidget(self.perfilnombre)
-
-        self.profileStatus = QLabel(self.centralwidget)
+        self.perfilnombre.setStyleSheet(u"font-weight: 700; color: #111b21;\n"
+"background-color: rgb(255, 255, 255);")
+        self.profileStatus = QLabel(self.groupBox)
         self.profileStatus.setObjectName(u"profileStatus")
+        self.profileStatus.setGeometry(QRect(160, 100, 81, 20))
+        self.profileStatus.setMinimumSize(QSize(20, 20))
+        self.profileStatus.setBaseSize(QSize(20, 20))
         font1 = QFont()
+        font1.setPointSize(10)
+        font1.setBold(True)
         self.profileStatus.setFont(font1)
-        self.profileStatus.setStyleSheet(u"color: #667781; font-size: 11px;")
-
-        self.profileText.addWidget(self.profileStatus)
-
-
-        self.profileLayout.addLayout(self.profileText)
-
-        self.profileSpacer = QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.profileLayout.addItem(self.profileSpacer)
-
-        self.configuracionPerfil = QToolButton(self.centralwidget)
-        self.configuracionPerfil.setObjectName(u"configuracionPerfil")
-        self.configuracionPerfil.setStyleSheet(u"border: 0; color: #54656f; font-size: 20px;")
-
-        self.profileLayout.addWidget(self.configuracionPerfil)
-
-
-        self.sidebarLayout.addLayout(self.profileLayout)
-
-        self.createButtonsLayout = QHBoxLayout()
-        self.createButtonsLayout.setObjectName(u"createButtonsLayout")
-        self.create_chat = QPushButton(self.centralwidget)
-        self.create_chat.setObjectName(u"create_chat")
-
-        self.createButtonsLayout.addWidget(self.create_chat)
-
-        self.create_group = QPushButton(self.centralwidget)
-        self.create_group.setObjectName(u"create_group")
-
-        self.createButtonsLayout.addWidget(self.create_group)
-
-        self.create_channel = QPushButton(self.centralwidget)
-        self.create_channel.setObjectName(u"create_channel")
-
-        self.createButtonsLayout.addWidget(self.create_channel)
-
+        self.profileStatus.setStyleSheet(u"color: rgb(64, 193, 94); font-size: 10pt;")
+        self.profileStatus.setLineWidth(7)
+        self.profileStatus.setTextFormat(Qt.TextFormat.PlainText)
+        self.perfilAvatar = QLabel(self.groupBox)
+        self.perfilAvatar.setObjectName(u"perfilAvatar")
+        self.perfilAvatar.setGeometry(QRect(40, 40, 100, 100))
+        self.perfilAvatar.setMinimumSize(QSize(100, 100))
+        self.perfilAvatar.setMaximumSize(QSize(80, 80))
+        self.perfilAvatar.setStyleSheet(u"\n"
+"background: #00a884; color: white; border-radius: 0px; font-size: 16px; font-weight: 700; ")
+        self.perfilAvatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.searchButton = QToolButton(self.centralwidget)
+        self.searchButton.setObjectName(u"searchButton")
+        self.searchButton.setGeometry(QRect(700, 190, 30, 33))
+        self.searchButton.setAutoFillBackground(False)
+        self.searchButton.setStyleSheet(u"border: 0; font-size: 22px; color: rgb(0, 0, 0);")
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.searchButton.setIcon(icon1)
+        self.txtMsgs = QTextEdit(self.centralwidget)
+        self.txtMsgs.setObjectName(u"txtMsgs")
+        self.txtMsgs.setGeometry(QRect(415, 220, 481, 421))
+        font2 = QFont()
+        font2.setStyleStrategy(QFont.PreferDefault)
+        self.txtMsgs.setFont(font2)
+        self.txtMsgs.setStyleSheet(u"background-color: rgb(255, 255, 255);border-radius:10px;")
+        self.txtMsgs.setFrameShape(QFrame.Shape.StyledPanel)
+        self.txtMsgs.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+        self.txtMsgs.setReadOnly(True)
+        self.avatar = QLabel(self.centralwidget)
+        self.avatar.setObjectName(u"avatar")
+        self.avatar.setGeometry(QRect(360, 190, 80, 80))
+        self.avatar.setMinimumSize(QSize(80, 80))
+        self.avatar.setMaximumSize(QSize(60, 60))
+        self.avatar.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.avatar.setStyleSheet(u"background: #d9fdd3; color: #075e54; border-radius: 40px; font-size: 21px; font-weight: 700;")
+        self.avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.txtSend = QLineEdit(self.centralwidget)
+        self.txtSend.setObjectName(u"txtSend")
+        self.txtSend.setGeometry(QRect(440, 600, 391, 30))
+        self.txtSend.setStyleSheet(u"background-color: rgb(0, 170, 255);\n"
+"color: rgb(0, 0, 0);border-radius:10px;")
+        self.txtSend.setMaxLength(1023)
+        self.txtSend.setFrame(False)
+        self.btnSend = QPushButton(self.centralwidget)
+        self.btnSend.setObjectName(u"btnSend")
+        self.btnSend.setGeometry(QRect(840, 600, 41, 30))
+        self.btnSend.setStyleSheet(u"background-color: rgb(64, 193, 94);border-radius:10px;")
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentSend))
+        self.btnSend.setIcon(icon2)
+        self.title = QLabel(self.centralwidget)
+        self.title.setObjectName(u"title")
+        self.title.setGeometry(QRect(552, 190, 151, 41))
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.title.sizePolicy().hasHeightForWidth())
+        self.title.setSizePolicy(sizePolicy)
+        font3 = QFont()
+        font3.setPointSize(15)
+        font3.setWeight(QFont.ExtraLight)
+        self.title.setFont(font3)
+        self.title.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.title.setStyleSheet(u"font-weight: 200; color: #111b21;\n"
+"background-color: rgb(255, 255, 255);border-radius:5px;")
+        self.title.setFrameShape(QFrame.Shape.Panel)
+        self.title.setFrameShadow(QFrame.Shadow.Plain)
+        self.title.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.join_channel = QPushButton(self.centralwidget)
         self.join_channel.setObjectName(u"join_channel")
-
-        self.createButtonsLayout.addWidget(self.join_channel)
-
-
-        self.sidebarLayout.addLayout(self.createButtonsLayout)
-
-        self.selecchatsreciente = QLabel(self.centralwidget)
+        self.join_channel.setGeometry(QRect(720, 93, 180, 60))
+        font4 = QFont()
+        font4.setPointSize(18)
+        self.join_channel.setFont(font4)
+        self.join_channel.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.create_chat = QPushButton(self.centralwidget)
+        self.create_chat.setObjectName(u"create_chat")
+        self.create_chat.setGeometry(QRect(500, 10, 180, 60))
+        self.create_chat.setFont(font4)
+        self.create_chat.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.create_channel = QPushButton(self.centralwidget)
+        self.create_channel.setObjectName(u"create_channel")
+        self.create_channel.setGeometry(QRect(500, 93, 180, 60))
+        self.create_channel.setFont(font4)
+        self.create_channel.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.create_group = QPushButton(self.centralwidget)
+        self.create_group.setObjectName(u"create_group")
+        self.create_group.setGeometry(QRect(720, 10, 180, 60))
+        self.create_group.setFont(font4)
+        self.create_group.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
+        self.btnSalir = QPushButton(self.centralwidget)
+        self.btnSalir.setObjectName(u"btnSalir")
+        self.btnSalir.setGeometry(QRect(920, 10, 35, 35))
+        font5 = QFont()
+        font5.setPointSize(14)
+        font5.setBold(True)
+        self.btnSalir.setFont(font5)
+        self.btnSalir.setStyleSheet(u"background-color: rgb(220, 53, 69); color: rgb(255, 255, 255); border-radius: 17px;")
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit))
+        self.btnSalir.setIcon(icon3)
+        self.groupBox_2 = QGroupBox(self.centralwidget)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setGeometry(QRect(-10, 190, 321, 501))
+        self.groupBox_2.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);border-radius:10px;")
+        self.selecchatsreciente = QLabel(self.groupBox_2)
         self.selecchatsreciente.setObjectName(u"selecchatsreciente")
+        self.selecchatsreciente.setGeometry(QRect(30, 50, 171, 16))
+        self.selecchatsreciente.setFont(font5)
         self.selecchatsreciente.setStyleSheet(u"QLabel#sectionTitle { }")
-
-        self.sidebarLayout.addWidget(self.selecchatsreciente)
-
-        self.chatsReciente = QListWidget(self.centralwidget)
-        QListWidgetItem(self.chatsReciente)
-        QListWidgetItem(self.chatsReciente)
-        QListWidgetItem(self.chatsReciente)
-        self.chatsReciente.setObjectName(u"chatsReciente")
-
-        self.sidebarLayout.addWidget(self.chatsReciente)
-
-        self.label = QLabel(self.centralwidget)
+        self.label = QLabel(self.groupBox_2)
         self.label.setObjectName(u"label")
-
-        self.sidebarLayout.addWidget(self.label)
-
-        self.listWidget = QListWidget(self.centralwidget)
+        self.label.setGeometry(QRect(30, 180, 131, 16))
+        self.label.setFont(font5)
+        self.listWidget = QListWidget(self.groupBox_2)
         QListWidgetItem(self.listWidget)
         QListWidgetItem(self.listWidget)
         QListWidgetItem(self.listWidget)
         QListWidgetItem(self.listWidget)
         self.listWidget.setObjectName(u"listWidget")
-
-        self.sidebarLayout.addWidget(self.listWidget)
-
-        self.seleccanales = QLabel(self.centralwidget)
+        self.listWidget.setGeometry(QRect(30, 200, 241, 80))
+        self.listWidget.setStyleSheet(u"border-color: rgb(0, 0, 0);border-radius:10px;background-color: rgb(0, 170, 255);")
+        self.listWidget.setFrameShape(QFrame.Shape.Box)
+        self.listWidget.setFrameShadow(QFrame.Shadow.Raised)
+        self.seleccanales = QLabel(self.groupBox_2)
         self.seleccanales.setObjectName(u"seleccanales")
+        self.seleccanales.setGeometry(QRect(30, 320, 111, 16))
+        self.seleccanales.setFont(font5)
         self.seleccanales.setStyleSheet(u"QLabel#sectionTitle { }")
-
-        self.sidebarLayout.addWidget(self.seleccanales)
-
-        self.canales = QListWidget(self.centralwidget)
+        self.canales = QListWidget(self.groupBox_2)
         QListWidgetItem(self.canales)
         QListWidgetItem(self.canales)
         QListWidgetItem(self.canales)
         self.canales.setObjectName(u"canales")
+        self.canales.setGeometry(QRect(30, 340, 241, 70))
         self.canales.setMaximumSize(QSize(16777215, 120))
-
-        self.sidebarLayout.addWidget(self.canales)
-
-
-        self.rootLayout.addLayout(self.sidebarLayout)
-
-        self.mainLayout = QVBoxLayout()
-        self.mainLayout.setSpacing(0)
-        self.mainLayout.setObjectName(u"mainLayout")
-        self.mainLayout.setContentsMargins(0, 0, 0, 0)
-        self.headerLayout = QHBoxLayout()
-        self.headerLayout.setObjectName(u"headerLayout")
-        self.headerLayout.setContentsMargins(10, 5, 24, 5)
-        self.avatar = QLabel(self.centralwidget)
-        self.avatar.setObjectName(u"avatar")
-        self.avatar.setMinimumSize(QSize(48, 48))
-        self.avatar.setMaximumSize(QSize(48, 48))
-        self.avatar.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.avatar.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        self.headerLayout.addWidget(self.avatar)
-
-        self.chatHeaderText = QVBoxLayout()
-        self.chatHeaderText.setSpacing(0)
-        self.chatHeaderText.setObjectName(u"chatHeaderText")
-        self.chatHeaderText.setContentsMargins(50, 5, 10, 5)
-        self.title = QLabel(self.centralwidget)
-        self.title.setObjectName(u"title")
-        self.title.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-
-        self.chatHeaderText.addWidget(self.title)
-
-        self.subtitle = QLabel(self.centralwidget)
-        self.subtitle.setObjectName(u"subtitle")
-        self.subtitle.setStyleSheet(u"color: #667781; font-size: 12px;")
-
-        self.chatHeaderText.addWidget(self.subtitle)
-
-
-        self.headerLayout.addLayout(self.chatHeaderText)
-
-        self.searchButton = QToolButton(self.centralwidget)
-        self.searchButton.setObjectName(u"searchButton")
-        self.searchButton.setStyleSheet(u"border: 0; font-size: 22px; color: #54656f;")
-
-        self.headerLayout.addWidget(self.searchButton)
-
-
-        self.mainLayout.addLayout(self.headerLayout)
-
-        self.txtMsgs = QPlainTextEdit(self.centralwidget)
-        self.txtMsgs.setObjectName(u"txtMsgs")
-        self.txtMsgs.setReadOnly(True)
-
-        self.mainLayout.addWidget(self.txtMsgs)
-
-        self.sendLayout = QHBoxLayout()
-        self.sendLayout.setObjectName(u"sendLayout")
-        self.sendLayout.setContentsMargins(16, 12, 16, 12)
-        self.txtSend = QLineEdit(self.centralwidget)
-        self.txtSend.setObjectName(u"txtSend")
-        self.txtSend.setMaxLength(1023)
-
-        self.sendLayout.addWidget(self.txtSend)
-
-        self.btnSend = QPushButton(self.centralwidget)
-        self.btnSend.setObjectName(u"btnSend")
-
-        self.sendLayout.addWidget(self.btnSend)
-
-
-        self.mainLayout.addLayout(self.sendLayout)
-
-
-        self.rootLayout.addLayout(self.mainLayout)
-
+        self.canales.setStyleSheet(u"border-color:rgb(0,0,0);background-color: rgb(0, 170, 255);")
+        self.canales.setFrameShape(QFrame.Shape.Box)
+        self.canales.setFrameShadow(QFrame.Shadow.Raised)
+        self.chatsReciente = QListWidget(self.groupBox_2)
+        QListWidgetItem(self.chatsReciente)
+        QListWidgetItem(self.chatsReciente)
+        QListWidgetItem(self.chatsReciente)
+        self.chatsReciente.setObjectName(u"chatsReciente")
+        self.chatsReciente.setGeometry(QRect(30, 80, 241, 70))
+        self.chatsReciente.setStyleSheet(u"border-color: rgb(0, 0, 0);\n"
+"background-color: rgb(0, 170, 255);")
+        self.chatsReciente.setFrameShape(QFrame.Shape.Box)
+        self.chatsReciente.setFrameShadow(QFrame.Shadow.Raised)
         Principal.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(Principal)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 980, 33))
-        self.menuArchivo = QMenu(self.menubar)
-        self.menuArchivo.setObjectName(u"menuArchivo")
-        Principal.setMenuBar(self.menubar)
-
-        self.menubar.addAction(self.menuArchivo.menuAction())
-        self.menuArchivo.addAction(self.actionConectar)
-        self.menuArchivo.addSeparator()
-        self.menuArchivo.addAction(self.actionSalir)
+        self.btnSalir.raise_()
+        self.title.raise_()
+        self.groupBox.raise_()
+        self.searchButton.raise_()
+        self.txtMsgs.raise_()
+        self.avatar.raise_()
+        self.txtSend.raise_()
+        self.btnSend.raise_()
+        self.join_channel.raise_()
+        self.create_chat.raise_()
+        self.create_channel.raise_()
+        self.create_group.raise_()
+        self.groupBox_2.raise_()
 
         self.retranslateUi(Principal)
 
@@ -278,61 +244,64 @@ class Ui_Principal(object):
 #if QT_CONFIG(shortcut)
         self.actionSalir.setShortcut(QCoreApplication.translate("Principal", u"Ctrl+X", None))
 #endif // QT_CONFIG(shortcut)
-        self.perfilAvatar.setText(QCoreApplication.translate("Principal", u"P1", None))
+        self.groupBox.setTitle("")
         self.perfilnombre.setText(QCoreApplication.translate("Principal", u"p1", None))
         self.profileStatus.setText(QCoreApplication.translate("Principal", u"activo", None))
-        self.configuracionPerfil.setText(QCoreApplication.translate("Principal", u"\u22ee", None))
-        self.create_chat.setText(QCoreApplication.translate("Principal", u"Nuevo chat", None))
-        self.create_group.setText(QCoreApplication.translate("Principal", u"Nuevo grupo", None))
-        self.create_channel.setText(QCoreApplication.translate("Principal", u"Nuevo canal", None))
-        self.join_channel.setText(QCoreApplication.translate("Principal", u"Unir a canal", None))
-        self.selecchatsreciente.setText(QCoreApplication.translate("Principal", u"CHATS RECIENTES", None))
-
-        __sortingEnabled = self.chatsReciente.isSortingEnabled()
-        self.chatsReciente.setSortingEnabled(False)
-        ___qlistwidgetitem = self.chatsReciente.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("Principal", u"Chat global", None));
-        ___qlistwidgetitem1 = self.chatsReciente.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("Principal", u"p1", None));
-        ___qlistwidgetitem2 = self.chatsReciente.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("Principal", u"p2", None));
-        self.chatsReciente.setSortingEnabled(__sortingEnabled)
-
-        self.label.setText(QCoreApplication.translate("Principal", u"GRUPOS", None))
-
-        __sortingEnabled1 = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        ___qlistwidgetitem3 = self.listWidget.item(0)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("Principal", u"g1", None));
-        ___qlistwidgetitem4 = self.listWidget.item(1)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("Principal", u"g2", None));
-        ___qlistwidgetitem5 = self.listWidget.item(2)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("Principal", u"g3", None));
-        ___qlistwidgetitem6 = self.listWidget.item(3)
-        ___qlistwidgetitem6.setText(QCoreApplication.translate("Principal", u"g4", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled1)
-
-        self.seleccanales.setText(QCoreApplication.translate("Principal", u"CANALES", None))
-
-        __sortingEnabled2 = self.canales.isSortingEnabled()
-        self.canales.setSortingEnabled(False)
-        ___qlistwidgetitem7 = self.canales.item(0)
-        ___qlistwidgetitem7.setText(QCoreApplication.translate("Principal", u"c1", None));
-        ___qlistwidgetitem8 = self.canales.item(1)
-        ___qlistwidgetitem8.setText(QCoreApplication.translate("Principal", u"c2", None));
-        ___qlistwidgetitem9 = self.canales.item(2)
-        ___qlistwidgetitem9.setText(QCoreApplication.translate("Principal", u"c3", None));
-        self.canales.setSortingEnabled(__sortingEnabled2)
-
-        self.avatar.setText(QCoreApplication.translate("Principal", u"P2", None))
-        self.title.setText(QCoreApplication.translate("Principal", u"p2", None))
-        self.subtitle.setText(QCoreApplication.translate("Principal", u"activo", None))
+        self.perfilAvatar.setText(QCoreApplication.translate("Principal", u"P1", None))
 #if QT_CONFIG(tooltip)
         self.searchButton.setToolTip(QCoreApplication.translate("Principal", u"<html><head/><body><p align=\"justify\">Actualizar</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.searchButton.setText(QCoreApplication.translate("Principal", u"\u21bb", None))
+        self.searchButton.setText("")
+        self.avatar.setText(QCoreApplication.translate("Principal", u"P2", None))
         self.txtSend.setPlaceholderText(QCoreApplication.translate("Principal", u"Escribe un mensaje", None))
-        self.btnSend.setText(QCoreApplication.translate("Principal", u"Enviar", None))
-        self.menuArchivo.setTitle(QCoreApplication.translate("Principal", u"&Archivo", None))
+        self.btnSend.setText("")
+        self.title.setText(QCoreApplication.translate("Principal", u"p2", None))
+        self.join_channel.setText(QCoreApplication.translate("Principal", u"UNIR A CANAL", None))
+        self.create_chat.setText(QCoreApplication.translate("Principal", u"NUEVO CHAT", None))
+        self.create_channel.setText(QCoreApplication.translate("Principal", u"CREAR CANAL", None))
+        self.create_group.setText(QCoreApplication.translate("Principal", u"CREAR GRUPO", None))
+#if QT_CONFIG(tooltip)
+        self.btnSalir.setToolTip(QCoreApplication.translate("Principal", u"Salir (Ctrl+X)", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnSalir.setText("")
+        self.groupBox_2.setTitle("")
+        self.selecchatsreciente.setText(QCoreApplication.translate("Principal", u"CHATS RECIENTES", None))
+        self.label.setText(QCoreApplication.translate("Principal", u"GRUPOS", None))
+
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        ___qlistwidgetitem = self.listWidget.item(0)
+        ___qlistwidgetitem.setText(QCoreApplication.translate("Principal", u"g1", None));
+        ___qlistwidgetitem1 = self.listWidget.item(1)
+        ___qlistwidgetitem1.setText(QCoreApplication.translate("Principal", u"g2", None));
+        ___qlistwidgetitem2 = self.listWidget.item(2)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("Principal", u"g3", None));
+        ___qlistwidgetitem3 = self.listWidget.item(3)
+        ___qlistwidgetitem3.setText(QCoreApplication.translate("Principal", u"g4", None));
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+
+        self.seleccanales.setText(QCoreApplication.translate("Principal", u"CANALES", None))
+
+        __sortingEnabled1 = self.canales.isSortingEnabled()
+        self.canales.setSortingEnabled(False)
+        ___qlistwidgetitem4 = self.canales.item(0)
+        ___qlistwidgetitem4.setText(QCoreApplication.translate("Principal", u"c1", None));
+        ___qlistwidgetitem5 = self.canales.item(1)
+        ___qlistwidgetitem5.setText(QCoreApplication.translate("Principal", u"c2", None));
+        ___qlistwidgetitem6 = self.canales.item(2)
+        ___qlistwidgetitem6.setText(QCoreApplication.translate("Principal", u"c3", None));
+        self.canales.setSortingEnabled(__sortingEnabled1)
+
+
+        __sortingEnabled2 = self.chatsReciente.isSortingEnabled()
+        self.chatsReciente.setSortingEnabled(False)
+        ___qlistwidgetitem7 = self.chatsReciente.item(0)
+        ___qlistwidgetitem7.setText(QCoreApplication.translate("Principal", u"Chat global", None));
+        ___qlistwidgetitem8 = self.chatsReciente.item(1)
+        ___qlistwidgetitem8.setText(QCoreApplication.translate("Principal", u"p1", None));
+        ___qlistwidgetitem9 = self.chatsReciente.item(2)
+        ___qlistwidgetitem9.setText(QCoreApplication.translate("Principal", u"p2", None));
+        self.chatsReciente.setSortingEnabled(__sortingEnabled2)
+
     # retranslateUi
 

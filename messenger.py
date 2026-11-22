@@ -2,9 +2,10 @@ import sys
 import socket
 import time
 import os
+import html
 
-from PySide6.QtCore import Qt, QThread, Signal
-from PySide6.QtGui import QPixmap
+from PySide6.QtCore import Qt, QThread, Signal, QTimer
+from PySide6.QtGui import QPixmap, QTextCursor
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QDialog, QMessageBox, QListWidgetItem,
     QListWidget, QPushButton, QLineEdit, QLabel
@@ -15,9 +16,9 @@ from conectar_ui import Ui_Dialog
 from crear_ui import Ui_CrearDialog
 
 
-SERVER_HOST = "3.149.102.2"
-SERVER_PORT = 3091
-
+SERVER_HOST = "127.0.0.1"
+SERVER_PORT = 80
+#3091
 
 class ThreadSocket(QThread):
     #las signal de pyside6 son canales especiales para comunicar a lo de qt con el hilo de red
@@ -189,14 +190,15 @@ class MainWindow(QMainWindow, Ui_Principal):
     def __init__(self, *args, **kwargs):
         QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.actionConectar.triggered.connect(self.showDialog)
         self.actionSalir.triggered.connect(self.salir)
         self.coneccion = None
+        self.btnSalir.clicked.connect(self.actionSalir.trigger)
         self.btnSend.clicked.connect(self.mensaje_saliente)
         self.setWindowTitle("Chat global - Desconectado")
         self.txtSend.returnPressed.connect(self.mensaje_saliente)
         self.title.setText("Chat global")
-        self.subtitle.setText("Desconectado")
         self.create_chat.clicked.connect(self.createChat)
         self.create_group.clicked.connect(self.createGroup)
         self.create_channel.clicked.connect(self.createChannel)
@@ -216,12 +218,12 @@ class MainWindow(QMainWindow, Ui_Principal):
         self.canales.clear()
         self.activeSelection = ("public", None)
         self.setHeaderInitial("P")
+        QTimer.singleShot(0, lambda: self.txtSend.setFocus(Qt.OtherFocusReason))
 
     def chatSeleccionado(self, item):
         if item.text() == "Chat global":
             self.activeSelection = ("public", None)
             self.title.setText("Chat global")
-            self.subtitle.setText("activo")
             self.setHeaderInitial("P")
             if self.coneccion is not None:
                 self.sendCommand(b"--retrievePublic")
@@ -229,7 +231,6 @@ class MainWindow(QMainWindow, Ui_Principal):
             chat_id = item.data(Qt.ItemDataRole.UserRole)
             self.activeSelection = ("private", chat_id)
             self.title.setText(item.text())
-            self.subtitle.setText("activo")
             profile_pic = item.data(Qt.ItemDataRole.UserRole + 1)
             self.setHeaderImage(profile_pic)
             self.txtMsgs.clear()
@@ -240,7 +241,6 @@ class MainWindow(QMainWindow, Ui_Principal):
             group_id = item.data(Qt.ItemDataRole.UserRole)
             self.activeSelection = ("group", group_id)
             self.title.setText(item.text())
-            self.subtitle.setText("activo")
             self.setHeaderInitial("G")
             self.txtMsgs.clear()
             self.coneccion.server.sendall(f"--retrieveGroup--{group_id}--".encode("utf-8"))
@@ -251,7 +251,6 @@ class MainWindow(QMainWindow, Ui_Principal):
             channel_id = item.data(Qt.ItemDataRole.UserRole)
             self.activeSelection = ("channel", channel_id)
             self.title.setText(item.text())
-            self.subtitle.setText("activo")
             self.setHeaderInitial("C")
             self.txtMsgs.clear()
             self.coneccion.server.sendall(f"--retrieveChannel--{channel_id}--".encode("utf-8"))
@@ -424,14 +423,48 @@ class MainWindow(QMainWindow, Ui_Principal):
             self.coneccion.signal_channel_list.connect(self.loadChannelList)
             self.coneccion.signal_channel_history.connect(self.mensage_entrante)
             self.setWindowTitle("Chat global - Conectado")
-            self.subtitle.setText("Conectado")
             self.perfilnombre.setText(self.coneccion.name)
             self.perfilAvatar.setText(self.coneccion.name[:1].upper())
             self.seleccionarChatGlobal()
             self.retrieveSideLists()
+            QTimer.singleShot(0, lambda: self.txtSend.setFocus(Qt.OtherFocusReason))
 
     def mensage_entrante(self, mensaje):
-        self.txtMsgs.setPlainText(self.txtMsgs.toPlainText() + mensaje)
+        mensaje = mensaje.strip()
+        if not mensaje:
+            return
+
+        sender = None
+        content = mensaje
+        if mensaje.startswith("<") and ">" in mensaje:
+            sender, content = mensaje.split(">", 1)
+            sender = sender[1:].strip()
+            content = content.lstrip()
+
+        cursor = self.txtMsgs.textCursor()
+        cursor.movePosition(QTextCursor.MoveOperation.End)
+        if sender == "Tú":
+            alignment = "right"
+            background = "#89F675"
+        elif sender is None:
+            alignment = "left"
+            background = "#E9EDF0"
+        else:
+            alignment = "left"
+            background = "#62DAFB"
+
+        escaped_sender = html.escape(sender) if sender is not None else ""
+        escaped_content = html.escape(content)
+        sender_html = f'<div style="font-size:8pt;color:#0A12FF;">{escaped_sender}</div>' if sender else ""
+        bubble = (
+            '<table width="70%" cellspacing="0" cellpadding="8" '
+            f'style="background:{background};border-radius:12px;margin:6px 0;">'
+            f'<tr><td style="color:#000000;">{sender_html}'
+            f'<div style="color:#000000;">{escaped_content}</div></td></tr></table>'
+        )
+        cursor.insertHtml(
+            f'<div align="{alignment}">{bubble}</div><p style="margin:2px 0;"></p>'
+        )
         self.txtMsgs.verticalScrollBar().setValue(self.txtMsgs.verticalScrollBar().maximum())
 
     def privateMessageLive(self, chat_id, username, content):
@@ -467,7 +500,7 @@ class MainWindow(QMainWindow, Ui_Principal):
                     )
                 )
                 return
-        self.setHeaderInitial("P")
+        self.setHeaderInitial("X")
 
     def setHeaderInitial(self, initial):
         self.avatar.clear()
@@ -706,7 +739,6 @@ if __name__ == "__main__":
         window.coneccion.signal_channel_list.connect(window.loadChannelList)
         window.coneccion.signal_channel_history.connect(window.mensage_entrante)
         window.setWindowTitle("Chat global - Conectado")
-        window.subtitle.setText("Conectado")
         window.perfilnombre.setText(window.coneccion.name)
         window.perfilAvatar.setText(window.coneccion.name[:1].upper())
         window.seleccionarChatGlobal()

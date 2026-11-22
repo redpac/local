@@ -15,96 +15,138 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QGridLayout, QLabel, QLineEdit, QSizePolicy,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QLineEdit,
+    QPushButton, QSizePolicy, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.setWindowModality(Qt.WindowModality.WindowModal)
-        Dialog.resize(559, 239)
+        Dialog.resize(737, 403)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
         Dialog.setMinimumSize(QSize(391, 164))
+        font = QFont()
+        font.setStrikeOut(False)
+        Dialog.setFont(font)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoHome))
+        Dialog.setWindowIcon(icon)
+        Dialog.setWindowOpacity(1.000000000000000)
         Dialog.setAutoFillBackground(False)
-        Dialog.setStyleSheet(u"background-color: #2b1b3d; color: #ffffff;")
+        Dialog.setStyleSheet(u"color: #ffffff;\n"
+"background-color: rgb(24, 131, 213); ")
         Dialog.setModal(True)
-        self.gridLayout = QGridLayout(Dialog)
-        self.gridLayout.setObjectName(u"gridLayout")
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout.addWidget(self.label_2, 0, 2, 1, 1)
-
+        self.label_2.setGeometry(QRect(525, 40, 41, 16))
         self.txtPort = QLineEdit(Dialog)
         self.txtPort.setObjectName(u"txtPort")
-
-        self.gridLayout.addWidget(self.txtPort, 0, 3, 1, 1)
-
+        self.txtPort.setEnabled(False)
+        self.txtPort.setGeometry(QRect(570, 30, 61, 31))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.txtPort.sizePolicy().hasHeightForWidth())
+        self.txtPort.setSizePolicy(sizePolicy1)
+        self.txtPort.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+        self.txtPort.setAutoFillBackground(False)
+        self.txtPort.setStyleSheet(u"")
+        self.txtPort.setFrame(True)
+        self.txtPort.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.txtUser = QLineEdit(Dialog)
         self.txtUser.setObjectName(u"txtUser")
+        self.txtUser.setGeometry(QRect(330, 160, 132, 31))
+        sizePolicy1.setHeightForWidth(self.txtUser.sizePolicy().hasHeightForWidth())
+        self.txtUser.setSizePolicy(sizePolicy1)
+        self.txtUser.setStyleSheet(u"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);")
         self.txtUser.setInputMethodHints(Qt.InputMethodHint.ImhLowercaseOnly|Qt.InputMethodHint.ImhNoAutoUppercase)
-
-        self.gridLayout.addWidget(self.txtUser, 1, 1, 1, 1)
-
         self.txtServer = QLineEdit(Dialog)
         self.txtServer.setObjectName(u"txtServer")
-
-        self.gridLayout.addWidget(self.txtServer, 0, 1, 1, 1)
-
-        self.buttonBox = QDialogButtonBox(Dialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Ok|QDialogButtonBox.StandardButton.Cancel)
-
-        self.gridLayout.addWidget(self.buttonBox, 4, 3, 1, 1)
-
+        self.txtServer.setEnabled(False)
+        self.txtServer.setGeometry(QRect(70, 30, 91, 31))
+        sizePolicy1.setHeightForWidth(self.txtServer.sizePolicy().hasHeightForWidth())
+        self.txtServer.setSizePolicy(sizePolicy1)
+        self.txtServer.setCursor(QCursor(Qt.CursorShape.BlankCursor))
+        self.txtServer.setAutoFillBackground(False)
+        self.txtServer.setStyleSheet(u"")
+        self.txtServer.setFrame(True)
+        self.txtServer.setAlignment(Qt.AlignmentFlag.AlignJustify|Qt.AlignmentFlag.AlignVCenter)
+        self.btnConnect = QPushButton(Dialog)
+        self.btnConnect.setObjectName(u"btnConnect")
+        self.btnConnect.setGeometry(QRect(470, 210, 32, 32))
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.btnConnect.sizePolicy().hasHeightForWidth())
+        self.btnConnect.setSizePolicy(sizePolicy2)
+        self.btnConnect.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btnConnect.setStyleSheet(u"background-color: rgb(85, 255, 127);\n"
+"color: rgb(0, 0, 0);")
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaEject))
+        self.btnConnect.setIcon(icon1)
+        self.btnCancel = QPushButton(Dialog)
+        self.btnCancel.setObjectName(u"btnCancel")
+        self.btnCancel.setGeometry(QRect(20, 340, 81, 40))
+        font1 = QFont()
+        font1.setPointSize(12)
+        font1.setItalic(False)
+        font1.setStrikeOut(False)
+        self.btnCancel.setFont(font1)
+        self.btnCancel.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btnCancel.setStyleSheet(u"background-color: rgb(255, 85, 0);")
         self.txtPassword = QLineEdit(Dialog)
         self.txtPassword.setObjectName(u"txtPassword")
-
-        self.gridLayout.addWidget(self.txtPassword, 4, 1, 1, 1)
-
+        self.txtPassword.setGeometry(QRect(330, 210, 132, 31))
+        sizePolicy1.setHeightForWidth(self.txtPassword.sizePolicy().hasHeightForWidth())
+        self.txtPassword.setSizePolicy(sizePolicy1)
+        font2 = QFont()
+        font2.setStrikeOut(False)
+        font2.setHintingPreference(QFont.PreferFullHinting)
+        self.txtPassword.setFont(font2)
+        self.txtPassword.setStyleSheet(u"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);")
+        self.txtPassword.setClearButtonEnabled(True)
         self.label_4 = QLabel(Dialog)
         self.label_4.setObjectName(u"label_4")
-
-        self.gridLayout.addWidget(self.label_4, 4, 0, 1, 1)
-
+        self.label_4.setGeometry(QRect(220, 210, 101, 31))
+        font3 = QFont()
+        font3.setPointSize(14)
+        font3.setBold(True)
+        font3.setStrikeOut(False)
+        self.label_4.setFont(font3)
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
-
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
-
+        self.label.setGeometry(QRect(20, 40, 51, 16))
+        self.label.setAutoFillBackground(False)
         self.label_3 = QLabel(Dialog)
         self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
-
+        self.label_3.setGeometry(QRect(220, 160, 71, 31))
+        self.label_3.setFont(font3)
         QWidget.setTabOrder(self.txtServer, self.txtPort)
         QWidget.setTabOrder(self.txtPort, self.txtUser)
 
         self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        self.btnConnect.clicked.connect(Dialog.accept)
+        self.btnCancel.clicked.connect(Dialog.reject)
 
         QMetaObject.connectSlotsByName(Dialog)
     # setupUi
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Conectar", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"Puerto", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"Puerto:", None))
         self.txtPort.setInputMask("")
-        self.txtPort.setPlaceholderText(QCoreApplication.translate("Dialog", u"65535", None))
+        self.txtPort.setPlaceholderText(QCoreApplication.translate("Dialog", u"3091", None))
         self.txtUser.setPlaceholderText(QCoreApplication.translate("Dialog", u"anon", None))
         self.txtServer.setPlaceholderText(QCoreApplication.translate("Dialog", u"127.0.0.1", None))
-        self.txtPassword.setPlaceholderText(QCoreApplication.translate("Dialog", u"agrega una contrase\u00f1a", None))
+        self.btnConnect.setText("")
+        self.btnCancel.setText(QCoreApplication.translate("Dialog", u"Salir", None))
+        self.txtPassword.setPlaceholderText(QCoreApplication.translate("Dialog", u"********", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Contrase\u00f1a", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"Servidor", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"Servidor:", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Usuario", None))
     # retranslateUi
 

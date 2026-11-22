@@ -396,7 +396,7 @@ if __name__ == "__main__":
         raise SystemExit(1)
     #host = socket.gethostname()  # Esta función nos da el nombre de la máquina
     host = "0.0.0.0"
-    port = 3091
+    port = 80
     BUFFER_SIZE = 1024  # Usamos un número pequeño para tener una respuesta rápida
     # Creamos un socket TCP
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
