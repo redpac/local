@@ -19,7 +19,7 @@ macOS
 -------------------------------------------------------------------------------
 La forma más sencilla es instalar Python desde:
 https://www.python.org/downloads/macos/
-Otra opcion es usar Homebrew:
+Otra opción es usar Homebrew:
     brew install python
 Comprueba la instalación desde Terminal:
     python3 --version
