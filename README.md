@@ -1,5 +1,5 @@
 1. REQUISITOS
-* Una computadora con Windows, macOS o Linux.
+* Una computadora con Windows, macOS o GNU/Linux.
 * Python 3.10 o posterior.
 
 2. INSTALAR PYTHON
@@ -48,7 +48,7 @@ Abre una terminal dentro de la carpeta que contiene messenger.py.
 Windows - PowerShell o CMD:
 
     cd ruta\al\proyecto
-macOS o Linux - Terminal:
+macOS o GNU/Linux - Terminal:
 
     cd ruta/al/proyecto
 Para verificar los archivos:
@@ -69,6 +69,7 @@ Debes encontrar al menos:
 Un entorno virtual evita conflictos entre dependencias de distintos proyectos.
 
 WINDOWS
+
 Crear:
 
     python -m venv .venv
@@ -79,7 +80,8 @@ Si PowerShell bloquea scripts, usa CMD:
 
     .venv\Scripts\activate.bat
 
-macOS / LINUX
+macOS / GNU/LINUX
+
 Crear:
 
     python3 -m venv .venv
@@ -101,7 +103,7 @@ WINDOWS
     python -m pip install --upgrade pip
     python -m pip install -r requirements.txt
 
-macOS / LINUX
+macOS / GNU/LINUX
 
     python3 -m pip install --upgrade pip
     python3 -m pip install -r requirements.txt
@@ -112,11 +114,11 @@ WINDOWS
 
     python messenger.py
 
-macOS / LINUX
+macOS / GNU/LINUX
 
     python3 messenger.py
 
-Si aparece un error de bibliotecas gráficas en Linux, instala los componentes
+Si aparece un error de bibliotecas gráficas en GNU/Linux, instala los componentes
 Qt correspondientes con el administrador de paquetes de tu distribución.
 Para Ubuntu/Debian es frecuente necesitar:
     sudo apt install libxcb-cursor0
@@ -125,6 +127,7 @@ el entorno virtual esté activo y que pip haya instalado PySide6 dentro de
 ese entorno.
 
 7. ARQUITECTURA
+
 El proyecto sigue la arquitectura cliente-servidor:
 
 ```mermaid
