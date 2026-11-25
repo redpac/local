@@ -37,14 +37,14 @@
    <iconset theme="QIcon::ThemeIcon::GoHome"/>
   </property>
   <property name="windowOpacity">
-   <double>1.000000000000000</double>
+   <double>0.950000000000000</double>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">color: #ffffff;
-background-color: rgb(24, 131, 213); </string>
+background-color: #74e4f9;</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -183,7 +183,7 @@ background-color: rgb(24, 131, 213); </string>
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(85, 255, 127);
+    <string notr="true">background-color: #67b603;
 color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">

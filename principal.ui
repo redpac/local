@@ -22,8 +22,11 @@
   <property name="windowIcon">
    <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
   </property>
+  <property name="windowOpacity">
+   <double>0.950000000000000</double>
+  </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(47, 51, 127);
+   <string notr="true">background-color: #74e4ff;
 
 </string>
   </property>
@@ -62,7 +65,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">font-weight: 700; color: #111b21;
+      <string notr="true">font-weight: 700; color: #0a42bd;
 background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -97,7 +100,7 @@ background-color: rgb(255, 255, 255);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(64, 193, 94); font-size: 10pt;</string>
+      <string notr="true">color: #6ab63f; font-size: 10pt;</string>
      </property>
      <property name="lineWidth">
       <number>7</number>
@@ -145,7 +148,7 @@ background: #00a884; color: white; border-radius: 0px; font-size: 16px; font-wei
    <widget class="QToolButton" name="searchButton">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>600</x>
       <y>190</y>
       <width>30</width>
       <height>33</height>
@@ -182,7 +185,7 @@ background: #00a884; color: white; border-radius: 0px; font-size: 16px; font-wei
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);border-radius:10px;</string>
+     <string notr="true">background-color: rgb(255, 255, 255);border-radius:10px;padding-bottom:50px;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -231,15 +234,15 @@ background: #00a884; color: white; border-radius: 0px; font-size: 16px; font-wei
    <widget class="QLineEdit" name="txtSend">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>600</y>
-      <width>391</width>
+      <width>401</width>
       <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 170, 255);
-color: rgb(0, 0, 0);border-radius:10px;</string>
+     <string notr="true">background-color: #0a42bd;
+color: rgb(255, 255, 255);border-radius:10px;</string>
     </property>
     <property name="maxLength">
      <number>1023</number>
@@ -248,7 +251,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
      <bool>false</bool>
     </property>
     <property name="placeholderText">
-     <string>Escribe un mensaje</string>
+     <string>    Escribe un mensaje</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnSend">
@@ -261,7 +264,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(64, 193, 94);border-radius:10px;</string>
+     <string notr="true">background-color:#6ab63f;border-radius:10px;</string>
     </property>
     <property name="text">
      <string/>
@@ -273,7 +276,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
    <widget class="QLabel" name="title">
     <property name="geometry">
      <rect>
-      <x>552</x>
+      <x>435</x>
       <y>190</y>
       <width>151</width>
       <height>41</height>
@@ -308,7 +311,7 @@ background-color: rgb(255, 255, 255);border-radius:5px;</string>
      <string>p2</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+     <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
     </property>
    </widget>
    <widget class="QPushButton" name="join_channel">
@@ -326,8 +329,8 @@ background-color: rgb(255, 255, 255);border-radius:5px;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: #6ab63f;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>UNIR A CANAL</string>
@@ -348,8 +351,8 @@ color: rgb(0, 0, 0);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: #6ab63f;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>NUEVO CHAT</string>
@@ -370,8 +373,8 @@ color: rgb(0, 0, 0);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: #6ab63f;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>CREAR CANAL</string>
@@ -392,8 +395,8 @@ color: rgb(0, 0, 0);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-color: rgb(0, 0, 0);</string>
+     <string notr="true">background-color: #6ab63f;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>CREAR GRUPO</string>
@@ -494,7 +497,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-color: rgb(0, 0, 0);border-radius:10px;background-color: rgb(0, 170, 255);</string>
+      <string notr="true">border-color: rgb(0, 0, 0);border-radius:10px;background-color:#0a42bd;color:rgb(255,255,255);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::Box</enum>
@@ -561,7 +564,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">border-color:rgb(0,0,0);background-color: rgb(0, 170, 255);</string>
+      <string notr="true">border-color:rgb(0,0,0);background-color:#0a42bd;color:rgb(255,255,255);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::Box</enum>
@@ -596,7 +599,8 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">border-color: rgb(0, 0, 0);
-background-color: rgb(0, 170, 255);</string>
+color:rgb(255,255,255);
+background-color: #0a42bd;</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::Shape::Box</enum>

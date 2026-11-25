@@ -16,8 +16,9 @@ from conectar_ui import Ui_Dialog
 from crear_ui import Ui_CrearDialog
 
 
-SERVER_HOST = "127.0.0.1"
-SERVER_PORT = 80
+SERVER_HOST = "3.149.102.2"
+#3.149.102.2
+SERVER_PORT = 3091
 #3091
 
 class ThreadSocket(QThread):
@@ -445,22 +446,26 @@ class MainWindow(QMainWindow, Ui_Principal):
         cursor.movePosition(QTextCursor.MoveOperation.End)
         if sender == "Tú":
             alignment = "right"
-            background = "#89F675"
+            background = "#86e750"
+            text_color = "#000000"
         elif sender is None:
             alignment = "left"
-            background = "#E9EDF0"
+            background = "#ffb536"
+            text_color = "#000000"
         else:
             alignment = "left"
-            background = "#62DAFB"
+            background = "#0c71c6"
+            text_color = "#ffffff"
 
         escaped_sender = html.escape(sender) if sender is not None else ""
         escaped_content = html.escape(content)
-        sender_html = f'<div style="font-size:8pt;color:#0A12FF;">{escaped_sender}</div>' if sender else ""
+        sender_html = f'<div style="font-size:8pt;color:{text_color};">{escaped_sender}</div>' if sender else ""
+        #POR QUÉ NO SE REDONDEAN
         bubble = (
             '<table width="70%" cellspacing="0" cellpadding="8" '
-            f'style="background:{background};border-radius:12px;margin:6px 0;">'
-            f'<tr><td style="color:#000000;">{sender_html}'
-            f'<div style="color:#000000;">{escaped_content}</div></td></tr></table>'
+            f'style="background:{background};border-radius:5px;margin:6px 0;">'
+            f'<tr><td style="color:{text_color}">{sender_html}'
+            f'<div style="color:{text_color}">{escaped_content}</div></td></tr></table>'
         )
         cursor.insertHtml(
             f'<div align="{alignment}">{bubble}</div><p style="margin:2px 0;"></p>'

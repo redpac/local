@@ -35,10 +35,10 @@ class Ui_Dialog(object):
         Dialog.setFont(font)
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoHome))
         Dialog.setWindowIcon(icon)
-        Dialog.setWindowOpacity(1.000000000000000)
+        Dialog.setWindowOpacity(0.950000000000000)
         Dialog.setAutoFillBackground(False)
         Dialog.setStyleSheet(u"color: #ffffff;\n"
-"background-color: rgb(24, 131, 213); ")
+"background-color: #74e4f9;")
         Dialog.setModal(True)
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
@@ -84,7 +84,7 @@ class Ui_Dialog(object):
         sizePolicy2.setHeightForWidth(self.btnConnect.sizePolicy().hasHeightForWidth())
         self.btnConnect.setSizePolicy(sizePolicy2)
         self.btnConnect.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btnConnect.setStyleSheet(u"background-color: rgb(85, 255, 127);\n"
+        self.btnConnect.setStyleSheet(u"background-color: #67b603;\n"
 "color: rgb(0, 0, 0);")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaEject))
         self.btnConnect.setIcon(icon1)
