@@ -18,22 +18,22 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGroupBox, QLabel,
     QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
-    QPushButton, QSizePolicy, QTextEdit, QToolButton,
-    QWidget)
-
+    QPushButton, QSizePolicy, QTabWidget, QTextEdit,
+    QToolButton, QWidget)
 class Ui_Principal(object):
     def setupUi(self, Principal):
         if not Principal.objectName():
             Principal.setObjectName(u"Principal")
-        Principal.resize(963, 650)
+        Principal.resize(965, 650)
         Principal.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         Principal.setContextMenuPolicy(Qt.ContextMenuPolicy.NoContextMenu)
         icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.AddressBookNew))
         Principal.setWindowIcon(icon)
         Principal.setWindowOpacity(0.950000000000000)
         Principal.setStyleSheet(u"background-color: #74e4ff;\n"
-"\n"
+"background-color: qlineargradient(spread:pad, x1:0.519, y1:0.0123636, x2:1, y2:0.907, stop:0 rgba(116, 228, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "")
+        Principal.setTabShape(QTabWidget.TabShape.Rounded)
         self.actionConectar = QAction(Principal)
         self.actionConectar.setObjectName(u"actionConectar")
         self.actionSalir = QAction(Principal)
@@ -78,7 +78,8 @@ class Ui_Principal(object):
         self.searchButton.setObjectName(u"searchButton")
         self.searchButton.setGeometry(QRect(600, 190, 30, 33))
         self.searchButton.setAutoFillBackground(False)
-        self.searchButton.setStyleSheet(u"border: 0; font-size: 22px; color: rgb(0, 0, 0);")
+        self.searchButton.setStyleSheet(u"font-size: 22px;\n"
+"background-color: #6ab63f;")
         icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
         self.searchButton.setIcon(icon1)
         self.txtMsgs = QTextEdit(self.centralwidget)

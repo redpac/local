@@ -90,6 +90,7 @@ class ThreadSocket(QThread):
                                 self.signal_public_message.emit(f"<{sender}> {parts[1]}\n")
                         elif line == "--publicEnd--":#ps aquí acaba
                             self.signal_public_end.emit()
+                            
                         elif line.startswith("--privateChat--"):
                             parts = [part.strip() for part in line[len("--privateChat--"):].split("--") if part.strip()]
                             if len(parts) == 2:
@@ -367,25 +368,25 @@ class MainWindow(QMainWindow, Ui_Principal):
             time.sleep(0.1)
             self.txtSend.clear()
             if selection == "public":
-                self.mensage_entrante("<Tú> " + str + '\n')
+                self.mensaje_entrante("<Tú> " + str + '\n')
 
     def createChat(self):
         if self.coneccion is None:
-            self.mensage_entrante("<!!No conectado!!>\n")
+            self.mensaje_entrante("<!!No conectado!!>\n")
             return
 
         dialog = CrearDialog(self, "Crear chat", "Usuario")
         if dialog.exec() == 1:
             user_2 = dialog.txtNombre.text().strip()
             if user_2 == self.coneccion.name:
-                self.mensage_entrante("<!!Seleccione otro usuario!!>\n")
+                self.mensaje_entrante("<!!Seleccione otro usuario!!>\n")
                 return
             message = f"--chat--{self.coneccion.name}--{user_2}--"
             self.coneccion.server.sendall(message.encode("utf-8"))
 
     def createGroup(self):
         if self.coneccion is None:
-            self.mensage_entrante("<!!No conectado!!>\n")
+            self.mensaje_entrante("<!!No conectado!!>\n")
             return
         dialog = CrearDialog(self, "Crear grupo", "Nombre", group=True, connection=self.coneccion)
         if dialog.exec() == 1:
@@ -396,7 +397,7 @@ class MainWindow(QMainWindow, Ui_Principal):
 
     def createChannel(self):
         if self.coneccion is None:
-            self.mensage_entrante("<!!No conectado!!>\n")
+            self.mensaje_entrante("<!!No conectado!!>\n")
             return
         dialog = CrearDialog(self, "Crear canal", "Nombre del canal")
         if dialog.exec() == 1:
@@ -406,7 +407,7 @@ class MainWindow(QMainWindow, Ui_Principal):
 
     def joinChannel(self):
         if self.coneccion is None:
-            self.mensage_entrante("<!!No conectado!!>\n")
+            self.mensaje_entrante("<!!No conectado!!>\n")
             return
         dialog = CrearDialog(
             self,
@@ -426,16 +427,16 @@ class MainWindow(QMainWindow, Ui_Principal):
         if resp == 1:
             self.coneccion = dialog.connection
             self.coneccion.signal_public_start.connect(self.txtMsgs.clear)
-            self.coneccion.signal_public_message.connect(self.mensage_entrante)
+            self.coneccion.signal_public_message.connect(self.mensaje_entrante)
             self.coneccion.signal_private_list.connect(self.loadPrivateList)
-            self.coneccion.signal_private_history.connect(self.mensage_entrante)
+            self.coneccion.signal_private_history.connect(self.mensaje_entrante)
             self.coneccion.signal_private_live.connect(self.privateMessageLive)
             self.coneccion.signal_profile_pic.connect(self.loadProfileImage)
             self.coneccion.signal_group_list.connect(self.loadGroupList)
-            self.coneccion.signal_group_history.connect(self.mensage_entrante)
+            self.coneccion.signal_group_history.connect(self.mensaje_entrante)
             self.coneccion.signal_group_live.connect(self.groupMessageLive)
             self.coneccion.signal_channel_list.connect(self.loadChannelList)
-            self.coneccion.signal_channel_history.connect(self.mensage_entrante)
+            self.coneccion.signal_channel_history.connect(self.mensaje_entrante)
             self.setWindowTitle("Chat global - Conectado")
             self.perfilnombre.setText(self.coneccion.name)
             self.perfilAvatar.setText(self.coneccion.name[:1].upper())
@@ -443,7 +444,7 @@ class MainWindow(QMainWindow, Ui_Principal):
             self.retrieveSideLists()
             QTimer.singleShot(0, lambda: self.txtSend.setFocus(Qt.OtherFocusReason))
 
-    def mensage_entrante(self, mensaje):
+    def mensaje_entrante(self, mensaje):
         mensaje = mensaje.strip()
         if not mensaje:
             return
@@ -490,13 +491,13 @@ class MainWindow(QMainWindow, Ui_Principal):
         selection, item_id = self.activeSelection
         if selection == "private" and str(item_id) == str(chat_id):
             sender = "Tú" if username == self.coneccion.name else username
-            self.mensage_entrante(f"<{sender}> {content}\n")
+            self.mensaje_entrante(f"<{sender}> {content}\n")
 
     def groupMessageLive(self, group_id, username, content):
         selection, item_id = self.activeSelection
         if selection == "group" and str(item_id) == str(group_id):
             sender = "Tú" if username == self.coneccion.name else username
-            self.mensage_entrante(f"<{sender}> {content}\n")
+            self.mensaje_entrante(f"<{sender}> {content}\n")
 
     def resolveProfilePath(self, route):
         if not route:
@@ -722,8 +723,8 @@ class MiDialogo(QDialog, Ui_Dialog):
             return
 
         connection = ThreadSocket(host, int(port), user, password)
-        if hasattr(self.parent(), "mensage_entrante"):
-            connection.signal_message.connect(self.parent().mensage_entrante)
+        if hasattr(self.parent(), "mensaje_entrante"):
+            connection.signal_message.connect(self.parent().mensaje_entrante)
         connection.signal_authenticated.connect(self.authentication_finished)
         connection.start()
         self.connection = connection
@@ -747,16 +748,16 @@ if __name__ == "__main__":
     if dialog.exec() == 1:
         window.coneccion = dialog.connection
         window.coneccion.signal_public_start.connect(window.txtMsgs.clear)
-        window.coneccion.signal_public_message.connect(window.mensage_entrante)
+        window.coneccion.signal_public_message.connect(window.mensaje_entrante)
         window.coneccion.signal_private_list.connect(window.loadPrivateList)
-        window.coneccion.signal_private_history.connect(window.mensage_entrante)
+        window.coneccion.signal_private_history.connect(window.mensaje_entrante)
         window.coneccion.signal_private_live.connect(window.privateMessageLive)
         window.coneccion.signal_profile_pic.connect(window.loadProfileImage)
         window.coneccion.signal_group_list.connect(window.loadGroupList)
-        window.coneccion.signal_group_history.connect(window.mensage_entrante)
+        window.coneccion.signal_group_history.connect(window.mensaje_entrante)
         window.coneccion.signal_group_live.connect(window.groupMessageLive)
         window.coneccion.signal_channel_list.connect(window.loadChannelList)
-        window.coneccion.signal_channel_history.connect(window.mensage_entrante)
+        window.coneccion.signal_channel_history.connect(window.mensaje_entrante)
         window.setWindowTitle("Chat global - Conectado")
         window.perfilnombre.setText(window.coneccion.name)
         window.perfilAvatar.setText(window.coneccion.name[:1].upper())
