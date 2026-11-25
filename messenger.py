@@ -264,12 +264,25 @@ class MainWindow(QMainWindow, Ui_Principal):
                 item.setText(chat[1])
                 if len(chat) == 3:
                     item.setData(Qt.ItemDataRole.UserRole + 1, chat[2])
+                if self.activeSelection == ("private", chat[0]):
+                    self.chatsReciente.setCurrentItem(item)
                 return
         item = QListWidgetItem(chat[1])
         item.setData(Qt.ItemDataRole.UserRole, chat[0])
         if len(chat) == 3:
             item.setData(Qt.ItemDataRole.UserRole + 1, chat[2])
         self.chatsReciente.addItem(item)
+        if self.activeSelection == ("private", chat[0]):
+            self.chatsReciente.setCurrentItem(item)
+
+    def refreshPrivateList(self):
+        if self.coneccion is None:
+            return
+        self.chatsReciente.clear()
+        self.chatsReciente.addItem("Chat global")
+        if self.activeSelection[0] == "public":
+            self.chatsReciente.setCurrentRow(0)
+        self.coneccion.server.sendall(b"--retrievePrivate")
 
     def loadGroupList(self, group):
         for index in range(self.listWidget.count()):
@@ -473,6 +486,7 @@ class MainWindow(QMainWindow, Ui_Principal):
         self.txtMsgs.verticalScrollBar().setValue(self.txtMsgs.verticalScrollBar().maximum())
 
     def privateMessageLive(self, chat_id, username, content):
+        self.refreshPrivateList()
         selection, item_id = self.activeSelection
         if selection == "private" and str(item_id) == str(chat_id):
             sender = "Tú" if username == self.coneccion.name else username

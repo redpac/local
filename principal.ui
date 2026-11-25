@@ -594,7 +594,7 @@ color: rgb(0, 0, 0);border-radius:10px;</string>
        <x>30</x>
        <y>80</y>
        <width>241</width>
-       <height>70</height>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -621,6 +621,11 @@ background-color: #0a42bd;</string>
      <item>
       <property name="text">
        <string>p2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>p3</string>
       </property>
      </item>
     </widget>

@@ -209,8 +209,9 @@ class Ui_Principal(object):
         QListWidgetItem(self.chatsReciente)
         QListWidgetItem(self.chatsReciente)
         QListWidgetItem(self.chatsReciente)
+        QListWidgetItem(self.chatsReciente)
         self.chatsReciente.setObjectName(u"chatsReciente")
-        self.chatsReciente.setGeometry(QRect(30, 80, 241, 70))
+        self.chatsReciente.setGeometry(QRect(30, 80, 241, 91))
         self.chatsReciente.setStyleSheet(u"border-color: rgb(0, 0, 0);\n"
 "color:rgb(255,255,255);\n"
 "background-color: #0a42bd;")
@@ -303,6 +304,8 @@ class Ui_Principal(object):
         ___qlistwidgetitem8.setText(QCoreApplication.translate("Principal", u"p1", None));
         ___qlistwidgetitem9 = self.chatsReciente.item(2)
         ___qlistwidgetitem9.setText(QCoreApplication.translate("Principal", u"p2", None));
+        ___qlistwidgetitem10 = self.chatsReciente.item(3)
+        ___qlistwidgetitem10.setText(QCoreApplication.translate("Principal", u"p3", None));
         self.chatsReciente.setSortingEnabled(__sortingEnabled2)
 
     # retranslateUi

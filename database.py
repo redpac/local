@@ -161,7 +161,7 @@ def get_recent_private_chats(user_id):
     with mssql_python.connect(os.environ["MSSQL_CONNECTION_STRING"], timeout=30) as connection:
         with connection.cursor() as cursor:
             cursor.execute("""
-                SELECT TOP 2 c.id,
+                SELECT c.id,
                     CASE WHEN c.user_1 = ? THEN u2.username ELSE u1.username END,
                     CASE WHEN c.user_1 = ? THEN u2.profile_pic ELSE u1.profile_pic END
                 FROM jesus.banios.[private-chats] AS c
